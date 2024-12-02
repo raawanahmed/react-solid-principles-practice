@@ -8,7 +8,5 @@ import { Bad } from "./bad";
 import { GPT4 } from "./GPT4";
 
 export function OCP() {
-  // return <Good />;
-  // return <Bad />;
-  return <GPT4 />;
+   return <Bad />;
 }
