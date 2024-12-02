@@ -12,8 +12,8 @@ function App() {
         {/* <SRP /> */}
         {/* <OCP /> */}
         {/* <LSP /> */}
-        <ISP />
-        {/* <DIP /> */}
+        {/* <ISP /> */}
+        <DIP />
       </div>
     </>
   );
