@@ -16,12 +16,10 @@ interface IProductProps {
 
 interface IThumbnailProps {
   product: IProduct;
-  // imageUrl: string;
 }
 
 export function Thumbnail(props: IThumbnailProps) {
   const { product } = props;
-  // const { imageUrl } = props;
 
   return (
     <img

@@ -13,6 +13,4 @@ export function ISP() {
   };
 
   return <Bad product={PRODUCT} />;
-  return <Good product={PRODUCT} />;
-  return <GPT4 product={PRODUCT} />;
 }
