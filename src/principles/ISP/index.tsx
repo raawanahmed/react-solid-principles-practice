@@ -1,4 +1,4 @@
-import { Bad } from "./bad";
+import { Bad } from "./Bad";
 import { Good } from "./good";
 
 export function ISP() {
