@@ -1,10 +1,6 @@
 import { Bad } from "./bad";
-import { ConnectedForm } from "./connectedForm";
-import { Form } from "./form";
-import { GPT4 } from "./GPT4";
+import { Good } from "./Good";
 
 export function DIP() {
-  return <Bad />;
-  return <ConnectedForm />;
-  return <GPT4 />;
+  return <Good />;
 }

@@ -1,7 +1,5 @@
 import { Bad } from "./bad";
 import { Good } from "./good";
-import { GPT4 } from "./GPT4";
-import { Product } from "./product";
 
 export function ISP() {
   const PRODUCT = {
@@ -11,8 +9,5 @@ export function ISP() {
     price: 200,
     image: "example.com/image",
   };
-
-  return <Bad product={PRODUCT} />;
   return <Good product={PRODUCT} />;
-  return <GPT4 product={PRODUCT} />;
 }

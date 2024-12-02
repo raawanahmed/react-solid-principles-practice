@@ -6,24 +6,19 @@ import {
 interface IButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  role?: "back" | "forward" | "main" | "not-found";
-  icon?: React.ReactNode;
+  renderIcon?: () => React.ReactNode;
 }
 
 export function Button(props: IButtonProps) {
-  const { text, role, icon } = props;
+  const { text, renderIcon, ...otherProps } = props;
 
   return (
     <button
       className="flex items-center font-bold outline-none pt-4 pb-4 pl-8 pr-8 rounded-xl bg-gray-200 text-black"
-      {...props}
+      {...otherProps}
     >
       {text}
-      <div className="m-2">
-        {/* {role === "forward" && <HiOutlineArrowNarrowRight />}
-        {role === "back" && <HiOutlineArrowNarrowLeft />} */}
-        {icon}
-      </div>
+      <div className="m-2">{renderIcon && renderIcon()}</div>
     </button>
   );
 }
@@ -33,13 +28,11 @@ export function Good() {
     <div className="flex space-x-10">
       <Button
         text="Go Home"
-        // role="forward"
-        icon={<HiOutlineArrowNarrowRight />}
+        renderIcon={() => <HiOutlineArrowNarrowRight />}
       />
       <Button
         text="Go Back"
-        // role="back"
-        icon={<HiOutlineArrowNarrowLeft />}
+        renderIcon={() => <HiOutlineArrowNarrowLeft />}
       />
     </div>
   );
