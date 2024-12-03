@@ -1,5 +1,4 @@
 import { Bad } from "./Bad";
-import { Good } from "./good";
 
 export function ISP() {
   const PRODUCT = {
@@ -9,5 +8,5 @@ export function ISP() {
     price: 200,
     image: "example.com/image",
   };
-  return <Good product={PRODUCT} />;
+  return <Bad product={PRODUCT} />;
 }
