@@ -1,38 +1,36 @@
-import {
-  HiOutlineArrowNarrowRight,
-  HiOutlineArrowNarrowLeft,
-} from "react-icons/hi";
+// In this example, we modify the Card component every time we add a new type, which violates the Open/Closed Principle.
 
-interface IButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
-  role?: "back" | "forward" | "main" | "not-found";
-  icon?: React.ReactNode;
+interface ICardProps {
+  title: string;
+  content: string;
+  type: "info" | "warning" | "success";
 }
 
-export function Button(props: IButtonProps) {
-  const { text, role, icon } = props;
+export function Card({ title, content, type }: ICardProps) {
+  let style = "";
+
+  if (type === "info") {
+    style = "bg-blue-100 text-blue-800";
+  } else if (type === "warning") {
+    style = "bg-yellow-100 text-yellow-800";
+  } else if (type === "success") {
+    style = "bg-green-100 text-green-800";
+  }
 
   return (
-    <button
-      className="flex items-center font-bold outline-none pt-4 pb-4 pl-8 pr-8 rounded-xl bg-gray-200 text-black"
-      {...props}
-    >
-      {text}
-      <div className="m-2">
-        {role === "forward" && <HiOutlineArrowNarrowRight />}
-        {role === "back" && <HiOutlineArrowNarrowLeft />}
-        {icon}
-      </div>
-    </button>
+    <div className={`p-4 rounded-lg ${style}`}>
+      <h3 className="font-bold">{title}</h3>
+      <p>{content}</p>
+    </div>
   );
 }
 
 export function Bad() {
   return (
-    <div className="flex space-x-10">
-      <Button text="Go Home" role="forward" />
-      <Button text="Go Back" role="back" />
+    <div className="space-y-4">
+      <Card title="Info" content="This is an info card." type="info" />
+      <Card title="Warning" content="This is a warning card." type="warning" />
+      <Card title="Success" content="This is a success card." type="success" />
     </div>
   );
 }

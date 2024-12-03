@@ -1,38 +1,43 @@
-import {
-  HiOutlineArrowNarrowRight,
-  HiOutlineArrowNarrowLeft,
-} from "react-icons/hi";
-
-interface IButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
-  renderIcon?: () => React.ReactNode;
+// we refactor the Card component to accept external styles or components, making it extensible without requiring modification.
+interface ICardProps {
+  title: string;
+  content: string;
+  className?: string;
 }
 
-export function Button(props: IButtonProps) {
-  const { text, renderIcon, ...otherProps } = props;
-
+export function Card({ title, content, className }: ICardProps) {
   return (
-    <button
-      className="flex items-center font-bold outline-none pt-4 pb-4 pl-8 pr-8 rounded-xl bg-gray-200 text-black"
-      {...otherProps}
-    >
-      {text}
-      <div className="m-2">{renderIcon && renderIcon()}</div>
-    </button>
+    <div className={`p-4 rounded-lg ${className}`}>
+      <h3 className="font-bold">{title}</h3>
+      <p>{content}</p>
+    </div>
   );
 }
 
+// Helper functions or objects for styles
+const cardStyles = {
+  info: "bg-blue-100 text-blue-800",
+  warning: "bg-yellow-100 text-yellow-800",
+  success: "bg-green-100 text-green-800",
+};
+
 export function Good() {
   return (
-    <div className="flex space-x-10">
-      <Button
-        text="Go Home"
-        renderIcon={() => <HiOutlineArrowNarrowRight />}
+    <div className="space-y-4">
+      <Card
+        title="Info"
+        content="This is an info card."
+        className={cardStyles.info}
       />
-      <Button
-        text="Go Back"
-        renderIcon={() => <HiOutlineArrowNarrowLeft />}
+      <Card
+        title="Warning"
+        content="This is a warning card."
+        className={cardStyles.warning}
+      />
+      <Card
+        title="Success"
+        content="This is a success card."
+        className={cardStyles.success}
       />
     </div>
   );
