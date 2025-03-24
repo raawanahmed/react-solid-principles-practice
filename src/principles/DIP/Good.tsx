@@ -5,13 +5,13 @@ interface IFormProps {
   onSubmit: (email: string, password: string) => Promise<void>;
 }
 
-function Form(props: IFormProps) {
+function Form({onSubmit}: IFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await props.onSubmit(email, password);
+    await onSubmit(email, password);
   };
 
   return (

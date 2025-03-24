@@ -2,6 +2,33 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { Rating } from "react-simple-star-rating";
 
+function useFetchProducts() {
+    const [products, setProducts] = useState([]);
+  
+    useEffect(() => {
+      const fetchProducts = async () => {
+        const response = await axios.get(
+          "https://fakestoreapi.com/products"
+        );
+  
+        if (response && response.data) setProducts(response.data);
+      };
+  
+      fetchProducts();
+    }, []);
+  
+    return products;
+}
+
+function useFilterProducts(products, filterRate) {
+    return useMemo(
+      () =>
+        products.filter((product) => product.rating.rate > filterRate),
+      [products, filterRate]
+    );
+}
+
+
 function ProductsFilter({ filterRate, onRateChange }) {
   const handleRating = (rate) => {
     onRateChange(rate);
@@ -75,31 +102,7 @@ function ProductCard({ product }) {
   );
 }
 
-function useFetchProducts() {
-  const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await axios.get(
-        "https://fakestoreapi.com/products"
-      );
-
-      if (response && response.data) setProducts(response.data);
-    };
-
-    fetchProducts();
-  }, []);
-
-  return products;
-}
-
-function useFilterProducts(products, filterRate) {
-  return useMemo(
-    () =>
-      products.filter((product) => product.rating.rate > filterRate),
-    [products, filterRate]
-  );
-}
 
 export function Good() {
   const [filterRate, setFilterRate] = useState(1);
